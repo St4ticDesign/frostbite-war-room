@@ -787,7 +787,95 @@
         height: 65px;
       }
     }
-  </style>
+  
+    /* =====================================================
+       WAR ROOM — TALLER DESKTOP PROPORTIONS
+       Layout-only override. No colour/type/design changes.
+       ===================================================== */
+
+    #warRoomView .war-room-dashboard,
+    #warRoomView .war-dashboard,
+    #warRoomView .war-ui {
+      min-height: calc(100vh - 118px);
+      padding-top: 34px;
+      padding-bottom: 44px;
+    }
+
+    #warRoomView .war-score-panel,
+    #warRoomView .score-panel,
+    #warRoomView .war-score {
+      min-height: 190px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    #warRoomView .war-telemetry,
+    #warRoomView .telemetry-strip {
+      margin-top: 20px;
+      margin-bottom: 24px;
+    }
+
+    #warRoomView .hit-panels,
+    #warRoomView .war-hit-grid,
+    #warRoomView .hit-grid {
+      min-height: 365px;
+    }
+
+    #warRoomView .war-hit-panel,
+    #warRoomView .hit-panel,
+    #warRoomView .hits-panel {
+      min-height: 365px;
+    }
+
+    #warRoomView .war-hit-list,
+    #warRoomView .hit-list,
+    #warRoomView .hits-list {
+      min-height: 300px;
+      max-height: 300px;
+    }
+
+    #warRoomView .war-hit-row,
+    #warRoomView .hit-row {
+      min-height: 55px;
+    }
+
+    #warRoomView .war-stats,
+    #warRoomView .stats-grid,
+    #warRoomView .stat-grid {
+      margin-top: 24px;
+    }
+
+    #warRoomView .war-stat-card,
+    #warRoomView .stat-card {
+      min-height: 140px;
+      padding-top: 26px;
+      padding-bottom: 26px;
+    }
+
+    @media (max-height: 820px) and (min-width: 701px) {
+      #warRoomView .war-room-dashboard,
+      #warRoomView .war-dashboard,
+      #warRoomView .war-ui {
+        padding-top: 24px;
+        padding-bottom: 28px;
+      }
+
+      #warRoomView .war-hit-panel,
+      #warRoomView .hit-panel,
+      #warRoomView .hits-panel {
+        min-height: 315px;
+      }
+
+      #warRoomView .war-hit-list,
+      #warRoomView .hit-list,
+      #warRoomView .hits-list {
+        min-height: 250px;
+        max-height: 250px;
+      }
+    }
+
+
+</style>
 </head>
 
 <body>
