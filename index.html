@@ -33,6 +33,7 @@
       overflow: hidden;
       color: var(--ice-white);
       font-family: Arial, Helvetica, sans-serif;
+
       background:
         radial-gradient(
           ellipse at 50% 58%,
@@ -53,6 +54,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
+
       background:
         radial-gradient(
           circle at 50% 54%,
@@ -65,44 +67,61 @@
       position: relative;
       width: 100%;
       min-height: 100vh;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       isolation: isolate;
     }
 
     .mist {
       position: absolute;
+
       width: 900px;
       max-width: 90vw;
       height: 300px;
+
       top: 49%;
       left: 50%;
+
       transform: translate(-50%, -50%);
+
       background:
         radial-gradient(
           ellipse,
           rgba(76, 187, 239, 0.10),
           transparent 65%
         );
+
       filter: blur(30px);
+
       pointer-events: none;
+
       z-index: -2;
     }
 
     .portal-ring {
       position: absolute;
+
       width: min(760px, 76vw);
       height: min(570px, 68vh);
+
       top: 50%;
       left: 50%;
+
       transform: translate(-50%, -47%);
+
       border-radius: 50% 50% 10% 10%;
-      border: 1px solid rgba(112, 205, 255, 0.10);
+
+      border:
+        1px solid rgba(112, 205, 255, 0.10);
+
       box-shadow:
         inset 0 0 80px rgba(37, 154, 216, 0.05),
         0 0 70px rgba(37, 154, 216, 0.04);
+
       z-index: -3;
     }
 
@@ -113,19 +132,33 @@
 
     .motto {
       margin-bottom: 10px;
+
       color: #7fa4b8;
+
       font-size: 11px;
+
       letter-spacing: 0.48em;
+
       text-transform: uppercase;
     }
 
     .frostbite-title {
       position: relative;
-      font-family: Impact, "Arial Black", sans-serif;
-      font-size: clamp(58px, 8vw, 118px);
+
+      font-family:
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+      font-size:
+        clamp(58px, 8vw, 118px);
+
       line-height: 0.88;
+
       letter-spacing: 0.045em;
+
       color: #dff7ff;
+
       text-shadow:
         0 0 4px #ffffff,
         0 0 12px #8bdcff,
@@ -135,11 +168,16 @@
 
     .frostbite-title::after {
       content: "";
+
       position: absolute;
+
       left: 8%;
       right: 8%;
+
       bottom: -11px;
+
       height: 10px;
+
       background:
         linear-gradient(
           90deg,
@@ -149,79 +187,129 @@
           rgba(194, 240, 255, 0.70),
           transparent
         );
+
       filter: blur(6px);
+
       opacity: 0.45;
     }
 
     .war-room-label {
       margin-top: 20px;
+
       color: #53778c;
+
       font-size: 10px;
+
       letter-spacing: 0.75em;
+
       text-transform: uppercase;
     }
 
     .matchup {
       margin-bottom: 26px;
+
       text-align: center;
     }
 
     .ranked-war {
       margin-bottom: 8px;
+
       color: #58798b;
+
       font-size: 9px;
+
       letter-spacing: 0.42em;
+
       text-transform: uppercase;
     }
 
     .matchup-name {
-      font-size: clamp(16px, 2vw, 23px);
+      font-size:
+        clamp(16px, 2vw, 23px);
+
       font-weight: 700;
+
       letter-spacing: 0.22em;
+
       color: #b7d7e8;
+
       text-transform: uppercase;
     }
 
     .matchup-name strong {
       padding: 0 18px;
+
       color: #70ccfa;
+
       font-size: 0.8em;
     }
 
     .countdown-section {
       position: relative;
-      width: min(1180px, 94vw);
+
+      width:
+        min(1180px, 94vw);
+
       text-align: center;
     }
 
     .war-begins {
       margin-bottom: 19px;
+
       color: #b2cedc;
+
       font-size: 12px;
+
       letter-spacing: 0.55em;
+
       text-transform: uppercase;
     }
 
     .countdown {
       position: relative;
+
       z-index: 5;
+
       display: flex;
+
       align-items: flex-start;
+
       justify-content: center;
-      gap: clamp(8px, 1.7vw, 25px);
+
+      gap:
+        clamp(8px, 1.7vw, 25px);
     }
 
     .time-unit {
-      min-width: clamp(72px, 11vw, 145px);
+      position: relative;
+
+      min-width:
+        clamp(72px, 11vw, 145px);
+
       text-align: center;
+    }
+
+    .number-wrap {
+      position: relative;
+
+      display: inline-block;
     }
 
     .number {
       position: relative;
+
       display: block;
-      font-family: Impact, "Arial Black", sans-serif;
-      font-size: clamp(62px, 9vw, 128px);
+
+      font-family:
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+      font-size:
+        clamp(62px, 9vw, 128px);
+
       line-height: 0.90;
+
       letter-spacing: -0.02em;
 
       background:
@@ -235,7 +323,9 @@
         );
 
       -webkit-background-clip: text;
+
       background-clip: text;
+
       color: transparent;
 
       filter:
@@ -244,153 +334,185 @@
         drop-shadow(0 0 18px rgba(61, 183, 242, 0.75))
         drop-shadow(0 0 38px rgba(21, 132, 196, 0.35));
 
-      animation: icePulse 3.2s ease-in-out infinite;
+      animation:
+        icePulse 3.2s ease-in-out infinite;
     }
 
     .number::before {
       content: "";
+
       position: absolute;
+
       left: 12%;
       right: 12%;
+
       bottom: -5px;
+
       height: 7px;
+
       border-radius: 50%;
+
       background: #c8f1ff;
+
       filter: blur(4px);
+
       opacity: 0.35;
+    }
+
+    /*
+      SMALL ICICLES ATTACHED DIRECTLY
+      TO THE COUNTDOWN DIGITS
+    */
+
+    .digit-icicle {
+      position: absolute;
+
+      z-index: -1;
+
+      width: 0;
+      height: 0;
+
+      border-left:
+        4px solid transparent;
+
+      border-right:
+        4px solid transparent;
+
+      border-top:
+        15px solid rgba(130, 213, 249, 0.85);
+
+      filter:
+        drop-shadow(
+          0 3px 3px rgba(0,0,0,0.8)
+        );
+
+      opacity: 0.82;
+    }
+
+    .icicle-a {
+      left: 26%;
+      bottom: -10px;
+
+      transform:
+        rotate(3deg);
+
+      border-top-width: 18px;
+    }
+
+    .icicle-b {
+      right: 20%;
+      bottom: -8px;
+
+      transform:
+        rotate(-4deg);
+
+      border-top-width: 12px;
+
+      opacity: 0.60;
+    }
+
+    .time-unit:nth-of-type(3)
+    .icicle-a {
+      left: 55%;
+
+      border-top-width: 22px;
+    }
+
+    .time-unit:nth-of-type(5)
+    .icicle-b {
+      right: 34%;
+
+      border-top-width: 17px;
+    }
+
+    .time-unit:nth-of-type(7)
+    .icicle-a {
+      left: 18%;
+
+      border-top-width: 14px;
     }
 
     .time-label {
       display: block;
-      margin-top: 20px;
+
+      margin-top: 24px;
+
       color: #789aad;
+
       font-size: 9px;
+
       letter-spacing: 0.42em;
+
       text-transform: uppercase;
     }
 
     .separator {
       margin-top: -2px;
+
       color: #7ed7ff;
-      font-family: Impact, sans-serif;
-      font-size: clamp(46px, 6vw, 84px);
+
+      font-family:
+        Impact,
+        sans-serif;
+
+      font-size:
+        clamp(46px, 6vw, 84px);
+
       line-height: 1;
+
       text-shadow:
         0 0 8px rgba(151, 225, 255, 0.9),
         0 0 25px rgba(47, 175, 237, 0.55);
-      animation: separatorPulse 1.5s ease-in-out infinite;
+
+      animation:
+        separatorPulse 1.5s ease-in-out infinite;
     }
 
-    .ice-surface {
+    /*
+      THERE IS DELIBERATELY NO HORIZONTAL
+      ICE SHELF IN THIS VERSION.
+
+      THE NUMBERS NOW FLOAT ABOVE THE ABYSS.
+    */
+
+    .void-space {
       position: relative;
-      z-index: 4;
+
       width: 100%;
-      height: 92px;
-      margin-top: -8px;
+
+      height: 76px;
     }
 
-    .ice-edge {
-      position: absolute;
-      top: 30px;
-      left: 0;
-      width: 100%;
-      height: 15px;
+    .sealed {
+      position: relative;
 
-      background:
-        linear-gradient(
-          180deg,
-          #e9fbff 0%,
-          #8ad8fa 22%,
-          #348cba 58%,
-          #12354a 82%,
-          #06121a 100%
-        );
+      z-index: 3;
 
-      border-top: 1px solid rgba(255,255,255,0.95);
+      margin-top: 0;
 
-      box-shadow:
-        0 -5px 17px rgba(108, 212, 255, 0.48),
-        0 9px 25px rgba(0, 0, 0, 0.9);
-    }
+      color: #42677c;
 
-    .ice-edge::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: -4px;
-      height: 5px;
+      font-size: 9px;
 
-      background:
-        repeating-linear-gradient(
-          105deg,
-          transparent 0 55px,
-          rgba(255,255,255,0.45) 56px 58px,
-          transparent 59px 112px
-        );
+      letter-spacing: 0.48em;
 
-      opacity: 0.55;
-    }
-
-    .icicle {
-      position: absolute;
-      top: 44px;
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 28px solid #69bee5;
-      filter: drop-shadow(0 4px 4px #000);
-      opacity: 0.9;
-    }
-
-    .icicle:nth-child(2) {
-      left: 7%;
-      border-top-width: 38px;
-    }
-
-    .icicle:nth-child(3) {
-      left: 19%;
-      border-top-width: 19px;
-    }
-
-    .icicle:nth-child(4) {
-      left: 32%;
-      border-top-width: 34px;
-    }
-
-    .icicle:nth-child(5) {
-      left: 47%;
-      border-top-width: 23px;
-    }
-
-    .icicle:nth-child(6) {
-      left: 59%;
-      border-top-width: 41px;
-    }
-
-    .icicle:nth-child(7) {
-      left: 72%;
-      border-top-width: 25px;
-    }
-
-    .icicle:nth-child(8) {
-      left: 84%;
-      border-top-width: 37px;
-    }
-
-    .icicle:nth-child(9) {
-      left: 94%;
-      border-top-width: 21px;
+      text-transform: uppercase;
     }
 
     .abyss {
       position: absolute;
+
       left: 50%;
+
       bottom: -18vh;
-      transform: translateX(-50%);
+
+      transform:
+        translateX(-50%);
+
       width: 110vw;
-      height: 33vh;
+
+      height: 39vh;
+
       background:
         radial-gradient(
           ellipse at top,
@@ -401,29 +523,31 @@
           transparent,
           rgba(0,0,0,0.95)
         );
-      pointer-events: none;
-      z-index: -1;
-    }
 
-    .sealed {
-      margin-top: -20px;
-      color: #42677c;
-      font-size: 9px;
-      letter-spacing: 0.48em;
-      text-transform: uppercase;
+      pointer-events: none;
+
+      z-index: -1;
     }
 
     #frostCanvas {
       position: fixed;
+
       inset: 0;
+
       width: 100%;
+
       height: 100%;
+
       pointer-events: none;
+
       z-index: 20;
     }
 
     @keyframes icePulse {
-      0%, 100% {
+
+      0%,
+      100% {
+
         filter:
           drop-shadow(0 2px 0 #2a6584)
           drop-shadow(0 0 7px rgba(197, 242, 255, 0.85))
@@ -432,6 +556,7 @@
       }
 
       50% {
+
         filter:
           drop-shadow(0 2px 0 #2a6584)
           drop-shadow(0 0 10px rgba(225, 250, 255, 1))
@@ -441,7 +566,9 @@
     }
 
     @keyframes separatorPulse {
-      0%, 100% {
+
+      0%,
+      100% {
         opacity: 0.55;
       }
 
@@ -451,12 +578,14 @@
     }
 
     @media (max-width: 700px) {
+
       .portal-header {
         margin-bottom: 28px;
       }
 
       .motto {
         font-size: 7px;
+
         letter-spacing: 0.25em;
       }
 
@@ -481,8 +610,10 @@
       }
 
       .time-label {
-        margin-top: 13px;
+        margin-top: 18px;
+
         font-size: 6px;
+
         letter-spacing: 0.18em;
       }
 
@@ -490,8 +621,13 @@
         font-size: 9px;
       }
 
-      .ice-surface {
-        margin-top: 0;
+      .digit-icicle {
+        border-left-width: 3px;
+        border-right-width: 3px;
+      }
+
+      .void-space {
+        height: 65px;
       }
     }
   </style>
@@ -504,6 +640,7 @@
   <main class="war-portal">
 
     <div class="mist"></div>
+
     <div class="portal-ring"></div>
 
     <header class="portal-header">
@@ -522,6 +659,7 @@
 
     </header>
 
+
     <section class="matchup">
 
       <p class="ranked-war">
@@ -529,12 +667,17 @@
       </p>
 
       <p class="matchup-name">
+
         FROSTBITE
+
         <strong>VS</strong>
+
         W.M.D
+
       </p>
 
     </section>
+
 
     <section class="countdown-section">
 
@@ -542,50 +685,131 @@
         WAR BEGINS IN
       </p>
 
-      <div class="countdown" id="countdown">
+
+      <div
+        class="countdown"
+        id="countdown"
+      >
 
         <div class="time-unit">
-          <span class="number" id="days">03</span>
-          <span class="time-label">DAYS</span>
+
+          <div class="number-wrap">
+
+            <span
+              class="number"
+              id="days"
+            >
+              03
+            </span>
+
+            <span
+              class="digit-icicle icicle-a"
+            ></span>
+
+          </div>
+
+          <span class="time-label">
+            DAYS
+          </span>
+
         </div>
 
-        <span class="separator">:</span>
+
+        <span class="separator">
+          :
+        </span>
+
 
         <div class="time-unit">
-          <span class="number" id="hours">18</span>
-          <span class="time-label">HOURS</span>
+
+          <div class="number-wrap">
+
+            <span
+              class="number"
+              id="hours"
+            >
+              18
+            </span>
+
+            <span
+              class="digit-icicle icicle-a"
+            ></span>
+
+            <span
+              class="digit-icicle icicle-b"
+            ></span>
+
+          </div>
+
+          <span class="time-label">
+            HOURS
+          </span>
+
         </div>
 
-        <span class="separator">:</span>
+
+        <span class="separator">
+          :
+        </span>
+
 
         <div class="time-unit">
-          <span class="number" id="minutes">36</span>
-          <span class="time-label">MINUTES</span>
+
+          <div class="number-wrap">
+
+            <span
+              class="number"
+              id="minutes"
+            >
+              36
+            </span>
+
+            <span
+              class="digit-icicle icicle-b"
+            ></span>
+
+          </div>
+
+          <span class="time-label">
+            MINUTES
+          </span>
+
         </div>
 
-        <span class="separator">:</span>
+
+        <span class="separator">
+          :
+        </span>
+
 
         <div class="time-unit">
-          <span class="number" id="seconds">26</span>
-          <span class="time-label">SECONDS</span>
+
+          <div class="number-wrap">
+
+            <span
+              class="number"
+              id="seconds"
+            >
+              26
+            </span>
+
+            <span
+              class="digit-icicle icicle-a"
+            ></span>
+
+          </div>
+
+          <span class="time-label">
+            SECONDS
+          </span>
+
         </div>
 
       </div>
 
-      <div class="ice-surface" id="iceSurface">
 
-        <div class="ice-edge"></div>
+      <div class="void-space"></div>
 
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-        <span class="icicle"></span>
-
-      </div>
 
       <p class="sealed">
         THE PORTAL REMAINS SEALED
@@ -593,18 +817,23 @@
 
     </section>
 
+
     <div class="abyss"></div>
 
   </main>
 
+
   <script>
+
     /*
-      LANDING PAGE VISUAL PROTOTYPE
+      =====================================================
+      TEMPORARY VISUAL COUNTDOWN
+      =====================================================
 
-      The timer is deliberately running from a temporary target
-      so we can approve the visual landing page first.
+      We are still approving the landing page.
 
-      Torn synchronization comes AFTER the portal design is locked.
+      Torn synchronization comes after the visual portal
+      has been locked.
     */
 
     const temporaryTarget =
@@ -613,6 +842,7 @@
       (18 * 60 * 60 * 1000) +
       (36 * 60 * 1000) +
       (26 * 1000);
+
 
     const daysEl =
       document.getElementById("days");
@@ -626,53 +856,73 @@
     const secondsEl =
       document.getElementById("seconds");
 
+
     function pad(value) {
-      return String(value).padStart(2, "0");
+
+      return String(value)
+        .padStart(2, "0");
     }
+
 
     function updateCountdown() {
 
       const remaining =
         Math.max(
           0,
-          temporaryTarget - Date.now()
+          temporaryTarget -
+          Date.now()
         );
 
+
       const totalSeconds =
-        Math.floor(remaining / 1000);
+        Math.floor(
+          remaining / 1000
+        );
+
 
       const days =
         Math.floor(
           totalSeconds / 86400
         );
 
+
       const hours =
         Math.floor(
-          (totalSeconds % 86400) / 3600
+          (totalSeconds % 86400) /
+          3600
         );
+
 
       const minutes =
         Math.floor(
-          (totalSeconds % 3600) / 60
+          (totalSeconds % 3600) /
+          60
         );
+
 
       const seconds =
         totalSeconds % 60;
 
+
       daysEl.textContent =
         pad(days);
+
 
       hoursEl.textContent =
         pad(hours);
 
+
       minutesEl.textContent =
         pad(minutes);
+
 
       secondsEl.textContent =
         pad(seconds);
     }
 
+
     updateCountdown();
+
 
     setInterval(
       updateCountdown,
@@ -680,37 +930,73 @@
     );
 
 
-    /*
-      FALLING FROST
 
-      Small ice fragments originate around the timer/surface
-      and tumble downward into the abyss.
+    /*
+      =====================================================
+      FROST PARTICLE SYSTEM
+      =====================================================
+
+      Frost now originates DIRECTLY from the countdown
+      digits instead of a horizontal shelf.
+
+      Most particles are tiny frost crystals.
+
+      Occasionally a larger chunk of ice breaks loose.
     */
 
+
     const canvas =
-      document.getElementById("frostCanvas");
+      document.getElementById(
+        "frostCanvas"
+      );
+
 
     const ctx =
       canvas.getContext("2d");
 
+
     const particles = [];
+
+
+    const numberElements = [
+
+      document.getElementById("days"),
+
+      document.getElementById("hours"),
+
+      document.getElementById("minutes"),
+
+      document.getElementById("seconds")
+
+    ];
+
+
 
     function resizeCanvas() {
 
       const ratio =
         window.devicePixelRatio || 1;
 
+
       canvas.width =
-        window.innerWidth * ratio;
+        window.innerWidth *
+        ratio;
+
 
       canvas.height =
-        window.innerHeight * ratio;
+        window.innerHeight *
+        ratio;
+
 
       canvas.style.width =
-        window.innerWidth + "px";
+        window.innerWidth +
+        "px";
+
 
       canvas.style.height =
-        window.innerHeight + "px";
+        window.innerHeight +
+        "px";
+
 
       ctx.setTransform(
         ratio,
@@ -722,56 +1008,118 @@
       );
     }
 
+
     window.addEventListener(
       "resize",
       resizeCanvas
     );
 
+
     resizeCanvas();
+
+
+
+    function randomNumberElement() {
+
+      return numberElements[
+        Math.floor(
+          Math.random() *
+          numberElements.length
+        )
+      ];
+    }
+
 
 
     function createFrostParticle() {
 
-      const countdown =
-        document
-          .getElementById("countdown")
-          .getBoundingClientRect();
+      const source =
+        randomNumberElement();
 
-      const surface =
-        document
-          .getElementById("iceSurface")
-          .getBoundingClientRect();
+
+      const rect =
+        source.getBoundingClientRect();
+
+
+      /*
+        Particle originates somewhere across the
+        lower section of the actual number.
+      */
+
+      const x =
+        rect.left +
+        rect.width *
+        (
+          0.08 +
+          Math.random() *
+          0.84
+        );
+
+
+      const y =
+        rect.top +
+        rect.height *
+        (
+          0.70 +
+          Math.random() *
+          0.25
+        );
+
+
+      /*
+        Most particles are tiny.
+
+        Roughly 10% become noticeably larger
+        fragments.
+      */
+
+      const largeChunk =
+        Math.random() < 0.10;
+
 
       particles.push({
 
-        x:
-          countdown.left +
-          Math.random() *
-          countdown.width,
+        x: x,
 
-        y:
-          surface.top +
-          20 +
-          Math.random() * 14,
+        y: y,
 
         vx:
           (Math.random() - 0.5) *
-          0.9,
+          (
+            largeChunk
+              ? 1.5
+              : 0.65
+          ),
 
         vy:
-          0.25 +
-          Math.random() *
-          0.85,
+          largeChunk
+            ? 0.35 +
+              Math.random() *
+              0.8
+
+            : 0.15 +
+              Math.random() *
+              0.45,
 
         gravity:
-          0.025 +
-          Math.random() *
-          0.025,
+          largeChunk
+            ? 0.045 +
+              Math.random() *
+              0.025
+
+            : 0.020 +
+              Math.random() *
+              0.018,
 
         size:
-          1.5 +
-          Math.random() *
-          5,
+          largeChunk
+            ? 4 +
+              Math.random() *
+              5
+
+            : 1 +
+              Math.random() *
+              2.8,
 
         rotation:
           Math.random() *
@@ -779,15 +1127,23 @@
 
         rotationSpeed:
           (Math.random() - 0.5) *
-          0.08,
+          (
+            largeChunk
+              ? 0.12
+              : 0.06
+          ),
 
         alpha:
-          0.45 +
+          0.50 +
           Math.random() *
-          0.55
+          0.50,
+
+        large:
+          largeChunk
 
       });
     }
+
 
 
     function drawParticles() {
@@ -799,40 +1155,55 @@
         window.innerHeight
       );
 
+
       for (
-        let i = particles.length - 1;
+        let i =
+          particles.length - 1;
+
         i >= 0;
+
         i--
       ) {
 
         const p =
           particles[i];
 
+
         p.vy +=
           p.gravity;
+
 
         p.x +=
           p.vx;
 
+
         p.y +=
           p.vy;
+
 
         p.rotation +=
           p.rotationSpeed;
 
+
         p.alpha -=
-          0.0015;
+          p.large
+            ? 0.0011
+            : 0.0018;
+
 
         ctx.save();
+
 
         ctx.translate(
           p.x,
           p.y
         );
 
+
         ctx.rotate(
           p.rotation
         );
+
 
         ctx.globalAlpha =
           Math.max(
@@ -840,29 +1211,74 @@
             p.alpha
           );
 
+
         ctx.fillStyle =
-          p.size > 4
-            ? "#9fddf8"
-            : "#e5f9ff";
+          p.large
+            ? "#8fd8f8"
+            : "#e8faff";
+
 
         ctx.shadowColor =
-          "#55c8ff";
+          "#56caff";
+
 
         ctx.shadowBlur =
-          8;
+          p.large
+            ? 12
+            : 7;
 
-        ctx.fillRect(
-          -p.size / 2,
-          -p.size / 2,
-          p.size,
-          p.size * 0.72
+
+        /*
+          Slightly irregular ice fragment shape.
+        */
+
+        ctx.beginPath();
+
+
+        ctx.moveTo(
+          -p.size * 0.55,
+          -p.size * 0.25
         );
+
+
+        ctx.lineTo(
+          p.size * 0.10,
+          -p.size * 0.55
+        );
+
+
+        ctx.lineTo(
+          p.size * 0.55,
+          -p.size * 0.05
+        );
+
+
+        ctx.lineTo(
+          p.size * 0.25,
+          p.size * 0.55
+        );
+
+
+        ctx.lineTo(
+          -p.size * 0.45,
+          p.size * 0.30
+        );
+
+
+        ctx.closePath();
+
+
+        ctx.fill();
+
 
         ctx.restore();
 
+
         if (
           p.y >
-            window.innerHeight + 30 ||
+            window.innerHeight +
+            40 ||
+
           p.alpha <= 0
         ) {
 
@@ -873,29 +1289,84 @@
         }
       }
 
+
       requestAnimationFrame(
         drawParticles
       );
     }
 
+
     drawParticles();
 
 
-    setInterval(
-      () => {
 
-        createFrostParticle();
+    /*
+      Particle timing is intentionally irregular.
 
-        if (
-          Math.random() >
-          0.55
-        ) {
-          createFrostParticle();
-        }
+      We do NOT want a constant waterfall.
 
-      },
-      220
-    );
+      The countdown should look like frost is
+      naturally breaking away.
+    */
+
+
+    function scheduleFrostDrop() {
+
+      createFrostParticle();
+
+
+      /*
+        Occasionally several crystals loosen
+        together.
+      */
+
+      if (
+        Math.random() <
+        0.28
+      ) {
+
+        setTimeout(
+          createFrostParticle,
+          70 +
+          Math.random() *
+          120
+        );
+      }
+
+
+      if (
+        Math.random() <
+        0.08
+      ) {
+
+        setTimeout(
+          createFrostParticle,
+          150 +
+          Math.random() *
+          180
+        );
+      }
+
+
+      /*
+        Random delay prevents the effect from
+        looking mechanically timed.
+      */
+
+      const nextDrop =
+        160 +
+        Math.random() *
+        440;
+
+
+      setTimeout(
+        scheduleFrostDrop,
+        nextDrop
+      );
+    }
+
+
+    scheduleFrostDrop();
 
   </script>
 
