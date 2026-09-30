@@ -17,7 +17,6 @@
       --ice-white: #eafaff;
       --ice-light: #bcecff;
       --ice-blue: #67cfff;
-      --frost-blue: #229ee8;
       --deep-blue: #06121d;
       --abyss: #010305;
     }
@@ -196,9 +195,7 @@
     }
 
     .matchup-name {
-      font-size:
-        clamp(16px, 2vw, 23px);
-
+      font-size: clamp(16px, 2vw, 23px);
       font-weight: 700;
       letter-spacing: 0.22em;
       color: #b7d7e8;
@@ -233,16 +230,12 @@
       align-items: flex-start;
       justify-content: center;
 
-      gap:
-        clamp(8px, 1.7vw, 25px);
+      gap: clamp(8px, 1.7vw, 25px);
     }
 
     .time-unit {
       position: relative;
-
-      min-width:
-        clamp(72px, 11vw, 145px);
-
+      min-width: clamp(72px, 11vw, 145px);
       text-align: center;
     }
 
@@ -286,8 +279,7 @@
         drop-shadow(0 0 18px rgba(61, 183, 242, 0.75))
         drop-shadow(0 0 38px rgba(21, 132, 196, 0.35));
 
-      animation:
-        icePulse 3.2s ease-in-out infinite;
+      animation: icePulse 3.2s ease-in-out infinite;
     }
 
     .number::before {
@@ -304,86 +296,6 @@
       opacity: 0.35;
     }
 
-    /*
-      =====================================================
-      CRACK CANVAS
-      =====================================================
-
-      Each number gets its own transparent canvas.
-
-      The crack is drawn over the actual frozen digits
-      after the zero-charge sequence completes.
-    */
-
-    .crack-canvas {
-      position: absolute;
-      inset: -10% -12%;
-      width: 124%;
-      height: 120%;
-
-      pointer-events: none;
-
-      z-index: 8;
-
-      opacity: 0;
-    }
-
-    .number-wrap.cracked .crack-canvas {
-      opacity: 1;
-    }
-
-    /*
-      =====================================================
-      STEP 1 ZERO STATES
-      =====================================================
-    */
-
-    .countdown.zero-hold .number {
-      animation: none;
-
-      filter:
-        drop-shadow(0 2px 0 #2a6584)
-        drop-shadow(0 0 7px rgba(197, 242, 255, 0.95))
-        drop-shadow(0 0 18px rgba(61, 183, 242, 0.75))
-        drop-shadow(0 0 38px rgba(21, 132, 196, 0.35));
-    }
-
-    .countdown.zero-charge .number {
-      animation:
-        zeroCharge 2.4s ease-in-out forwards;
-    }
-
-    .countdown.zero-charge .separator {
-      animation:
-        separatorCharge 2.4s ease-in-out forwards;
-    }
-
-    /*
-      Once the cracking begins we keep the numbers
-      at their fully charged brightness.
-    */
-
-    .countdown.cracking .number {
-      animation: none;
-
-      filter:
-        drop-shadow(0 2px 0 #5ba5c8)
-        drop-shadow(0 0 18px rgba(255, 255, 255, 1))
-        drop-shadow(0 0 45px rgba(140, 225, 255, 1))
-        drop-shadow(0 0 95px rgba(46, 181, 247, 0.90))
-        drop-shadow(0 0 150px rgba(18, 128, 215, 0.55));
-    }
-
-    .countdown.cracking .separator {
-      animation: none;
-      opacity: 1;
-
-      text-shadow:
-        0 0 15px rgba(230, 250, 255, 1),
-        0 0 40px rgba(90, 207, 255, 1),
-        0 0 80px rgba(34, 161, 231, 0.75);
-    }
-
     .digit-icicle {
       position: absolute;
       z-index: -1;
@@ -391,18 +303,13 @@
       width: 0;
       height: 0;
 
-      border-left:
-        4px solid transparent;
-
-      border-right:
-        4px solid transparent;
-
-      border-top:
-        15px solid rgba(130, 213, 249, 0.85);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 15px solid rgba(130, 213, 249, 0.85);
 
       filter:
         drop-shadow(
-          0 3px 3px rgba(0,0,0,0.8)
+          0 3px 3px rgba(0, 0, 0, 0.8)
         );
 
       opacity: 0.82;
@@ -423,20 +330,17 @@
       opacity: 0.60;
     }
 
-    .time-unit:nth-of-type(3)
-    .icicle-a {
+    .time-unit:nth-of-type(3) .icicle-a {
       left: 55%;
       border-top-width: 22px;
     }
 
-    .time-unit:nth-of-type(5)
-    .icicle-b {
+    .time-unit:nth-of-type(5) .icicle-b {
       right: 34%;
       border-top-width: 17px;
     }
 
-    .time-unit:nth-of-type(7)
-    .icicle-a {
+    .time-unit:nth-of-type(7) .icicle-a {
       left: 18%;
       border-top-width: 14px;
     }
@@ -496,6 +400,129 @@
       z-index: 20;
     }
 
+    /*
+      =====================================================
+      PORTAL BLOOM
+      =====================================================
+
+      This begins invisible directly behind the timer.
+
+      Once activated it expands until the entire viewport
+      has been consumed by ice-blue / white light.
+    */
+
+    .portal-bloom {
+      position: fixed;
+
+      left: 50%;
+      top: 58%;
+
+      width: 120px;
+      height: 120px;
+
+      transform:
+        translate(-50%, -50%)
+        scale(0.01);
+
+      border-radius: 50%;
+
+      pointer-events: none;
+
+      z-index: 100;
+
+      opacity: 0;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(232, 250, 255, 1) 18%,
+          rgba(174, 230, 255, 0.98) 36%,
+          rgba(83, 193, 247, 0.94) 58%,
+          rgba(21, 128, 207, 0.70) 76%,
+          rgba(7, 58, 101, 0) 100%
+        );
+
+      filter: blur(6px);
+    }
+
+    .portal-bloom.active {
+      animation:
+        portalBloom 3.4s
+        cubic-bezier(
+          0.16,
+          0.78,
+          0.18,
+          1
+        )
+        forwards;
+    }
+
+    /*
+      A second layer finishes the transition.
+
+      It stays transparent until the expanding bloom
+      has nearly consumed the viewport, then washes
+      everything into pale ice-white.
+    */
+
+    .whiteout {
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      z-index: 110;
+
+      opacity: 0;
+
+      background:
+        radial-gradient(
+          circle at 50% 54%,
+          #ffffff 0%,
+          #effcff 34%,
+          #ccefff 68%,
+          #9ddcff 100%
+        );
+    }
+
+    .whiteout.active {
+      animation:
+        whiteout 3.4s ease-in forwards;
+    }
+
+    /*
+      =====================================================
+      ZERO STATES
+      =====================================================
+    */
+
+    .countdown.zero-hold .number {
+      animation: none;
+
+      filter:
+        drop-shadow(0 2px 0 #2a6584)
+        drop-shadow(0 0 7px rgba(197, 242, 255, 0.95))
+        drop-shadow(0 0 18px rgba(61, 183, 242, 0.75))
+        drop-shadow(0 0 38px rgba(21, 132, 196, 0.35));
+    }
+
+    .countdown.zero-charge .number {
+      animation:
+        zeroCharge 2.2s ease-in forwards;
+    }
+
+    .countdown.zero-charge .separator {
+      animation:
+        separatorCharge 2.2s ease-in forwards;
+    }
+
+    /*
+      =====================================================
+      ANIMATIONS
+      =====================================================
+    */
+
     @keyframes icePulse {
 
       0%,
@@ -541,18 +568,18 @@
       45% {
         filter:
           drop-shadow(0 2px 0 #3b7d9d)
-          drop-shadow(0 0 13px rgba(231, 252, 255, 1))
-          drop-shadow(0 0 30px rgba(94, 207, 255, 0.95))
-          drop-shadow(0 0 65px rgba(32, 158, 232, 0.62));
+          drop-shadow(0 0 18px rgba(231, 252, 255, 1))
+          drop-shadow(0 0 42px rgba(94, 207, 255, 1))
+          drop-shadow(0 0 90px rgba(32, 158, 232, 0.80));
       }
 
       100% {
         filter:
-          drop-shadow(0 2px 0 #5ba5c8)
-          drop-shadow(0 0 18px rgba(255, 255, 255, 1))
-          drop-shadow(0 0 45px rgba(140, 225, 255, 1))
-          drop-shadow(0 0 95px rgba(46, 181, 247, 0.90))
-          drop-shadow(0 0 150px rgba(18, 128, 215, 0.55));
+          drop-shadow(0 2px 0 #8accea)
+          drop-shadow(0 0 25px rgba(255, 255, 255, 1))
+          drop-shadow(0 0 65px rgba(178, 238, 255, 1))
+          drop-shadow(0 0 135px rgba(62, 192, 255, 1))
+          drop-shadow(0 0 220px rgba(18, 128, 215, 0.80));
       }
     }
 
@@ -570,9 +597,71 @@
         opacity: 1;
 
         text-shadow:
-          0 0 15px rgba(230, 250, 255, 1),
-          0 0 40px rgba(90, 207, 255, 1),
-          0 0 80px rgba(34, 161, 231, 0.75);
+          0 0 22px rgba(255, 255, 255, 1),
+          0 0 60px rgba(130, 225, 255, 1),
+          0 0 120px rgba(34, 161, 231, 0.90);
+      }
+    }
+
+    @keyframes portalBloom {
+
+      0% {
+        opacity: 0;
+        transform:
+          translate(-50%, -50%)
+          scale(0.01);
+      }
+
+      10% {
+        opacity: 0.55;
+      }
+
+      28% {
+        opacity: 0.95;
+        transform:
+          translate(-50%, -50%)
+          scale(1.8);
+      }
+
+      58% {
+        opacity: 1;
+        transform:
+          translate(-50%, -50%)
+          scale(7);
+      }
+
+      82% {
+        opacity: 1;
+        transform:
+          translate(-50%, -50%)
+          scale(16);
+      }
+
+      100% {
+        opacity: 1;
+        transform:
+          translate(-50%, -50%)
+          scale(28);
+      }
+    }
+
+    @keyframes whiteout {
+
+      0%,
+      48% {
+        opacity: 0;
+      }
+
+      70% {
+        opacity: 0.20;
+      }
+
+      86% {
+        opacity: 0.70;
+      }
+
+      100% {
+        opacity: 1;
       }
     }
 
@@ -633,11 +722,27 @@
 
   <canvas id="frostCanvas"></canvas>
 
+  <!--
+    These two layers perform the portal transition.
+  -->
+
+  <div
+    class="portal-bloom"
+    id="portalBloom"
+  ></div>
+
+  <div
+    class="whiteout"
+    id="whiteout"
+  ></div>
+
+
   <main class="war-portal">
 
     <div class="mist"></div>
 
     <div class="portal-ring"></div>
+
 
     <header class="portal-header">
 
@@ -694,10 +799,6 @@
               00
             </span>
 
-            <canvas
-              class="crack-canvas"
-            ></canvas>
-
             <span
               class="digit-icicle icicle-a"
             ></span>
@@ -726,10 +827,6 @@
             >
               00
             </span>
-
-            <canvas
-              class="crack-canvas"
-            ></canvas>
 
             <span
               class="digit-icicle icicle-a"
@@ -764,10 +861,6 @@
               00
             </span>
 
-            <canvas
-              class="crack-canvas"
-            ></canvas>
-
             <span
               class="digit-icicle icicle-b"
             ></span>
@@ -796,10 +889,6 @@
             >
               10
             </span>
-
-            <canvas
-              class="crack-canvas"
-            ></canvas>
 
             <span
               class="digit-icicle icicle-a"
@@ -832,20 +921,26 @@
 
     /*
       =====================================================
-      STEP 2 TRANSITION TEST
+      PORTAL TRANSITION TEST
       =====================================================
 
-      10 seconds
-      ↓
-      zero
-      ↓
+      10 second countdown
+            ↓
+      00 : 00 : 00 : 00
+            ↓
       500ms dead stop
-      ↓
-      2.4 second energy charge
-      ↓
-      cracks begin forming
-      ↓
-      fractured zeroes remain on screen
+            ↓
+      timer glow intensifies
+            ↓
+      portal bloom begins
+            ↓
+      light expands across viewport
+            ↓
+      complete ice-white screen
+
+      STOP.
+
+      The War Room reveal comes next.
     */
 
     const TEST_COUNTDOWN_SECONDS = 10;
@@ -856,19 +951,45 @@
 
 
     const countdownEl =
-      document.getElementById("countdown");
+      document.getElementById(
+        "countdown"
+      );
+
 
     const daysEl =
-      document.getElementById("days");
+      document.getElementById(
+        "days"
+      );
+
 
     const hoursEl =
-      document.getElementById("hours");
+      document.getElementById(
+        "hours"
+      );
+
 
     const minutesEl =
-      document.getElementById("minutes");
+      document.getElementById(
+        "minutes"
+      );
+
 
     const secondsEl =
-      document.getElementById("seconds");
+      document.getElementById(
+        "seconds"
+      );
+
+
+    const portalBloom =
+      document.getElementById(
+        "portalBloom"
+      );
+
+
+    const whiteout =
+      document.getElementById(
+        "whiteout"
+      );
 
 
     let countdownFinished = false;
@@ -900,21 +1021,31 @@
       secondsEl.textContent = "00";
 
 
+      /*
+        STEP A
+
+        Complete stillness.
+      */
+
       countdownEl.classList.add(
         "zero-hold"
       );
 
 
-      /*
-        500ms of total stillness.
-      */
-
       setTimeout(
         () => {
+
+          /*
+            STEP B
+
+            Energy begins building inside
+            the frozen countdown.
+          */
 
           countdownEl.classList.remove(
             "zero-hold"
           );
+
 
           countdownEl.classList.add(
             "zero-charge"
@@ -922,18 +1053,38 @@
 
 
           /*
-            zeroCharge lasts 2.4 seconds.
-
-            Once fully charged we begin cracking.
+            We allow the timer itself to build
+            pressure before releasing the bloom.
           */
 
           setTimeout(
-            beginCracking,
-            2400
+            beginPortalBloom,
+            1350
           );
 
         },
         500
+      );
+    }
+
+
+    function beginPortalBloom() {
+
+      /*
+        STEP C
+
+        The blue-white energy escapes the
+        countdown and begins consuming
+        the viewport.
+      */
+
+      portalBloom.classList.add(
+        "active"
+      );
+
+
+      whiteout.classList.add(
+        "active"
       );
     }
 
@@ -986,11 +1137,14 @@
       daysEl.textContent =
         pad(days);
 
+
       hoursEl.textContent =
         pad(hours);
 
+
       minutesEl.textContent =
         pad(minutes);
+
 
       secondsEl.textContent =
         pad(seconds);
@@ -1028,460 +1182,6 @@
 
     /*
       =====================================================
-      CRACK SYSTEM
-      =====================================================
-    */
-
-    const numberWraps =
-      Array.from(
-        document.querySelectorAll(
-          ".number-wrap"
-        )
-      );
-
-
-    function prepareCrackCanvas(
-      canvas
-    ) {
-
-      const rect =
-        canvas.getBoundingClientRect();
-
-
-      const ratio =
-        window.devicePixelRatio || 1;
-
-
-      canvas.width =
-        Math.max(
-          1,
-          rect.width * ratio
-        );
-
-
-      canvas.height =
-        Math.max(
-          1,
-          rect.height * ratio
-        );
-
-
-      const context =
-        canvas.getContext("2d");
-
-
-      context.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
-      );
-
-
-      return {
-        context,
-        width: rect.width,
-        height: rect.height
-      };
-    }
-
-
-    /*
-      Creates one branching fracture.
-
-      The crack starts around the middle region of the
-      frozen number and grows outward in several branches.
-    */
-
-    function createCrackStructure(
-      width,
-      height
-    ) {
-
-      const centerX =
-        width *
-        (
-          0.38 +
-          Math.random() *
-          0.24
-        );
-
-
-      const centerY =
-        height *
-        (
-          0.32 +
-          Math.random() *
-          0.30
-        );
-
-
-      const branches = [];
-
-
-      const branchCount =
-        5 +
-        Math.floor(
-          Math.random() * 3
-        );
-
-
-      for (
-        let b = 0;
-        b < branchCount;
-        b++
-      ) {
-
-        const points = [];
-
-
-        let x = centerX;
-        let y = centerY;
-
-
-        points.push({
-          x,
-          y
-        });
-
-
-        const baseAngle =
-          (
-            Math.PI * 2 /
-            branchCount
-          ) * b +
-          (
-            Math.random() -
-            0.5
-          ) * 0.65;
-
-
-        const segmentCount =
-          3 +
-          Math.floor(
-            Math.random() * 3
-          );
-
-
-        for (
-          let s = 0;
-          s < segmentCount;
-          s++
-        ) {
-
-          const distance =
-            (
-              width * 0.08
-            ) +
-            Math.random() *
-            (
-              width * 0.10
-            );
-
-
-          const angle =
-            baseAngle +
-            (
-              Math.random() -
-              0.5
-            ) * 0.65;
-
-
-          x +=
-            Math.cos(angle) *
-            distance;
-
-
-          y +=
-            Math.sin(angle) *
-            distance;
-
-
-          points.push({
-            x,
-            y
-          });
-        }
-
-
-        branches.push(
-          points
-        );
-      }
-
-
-      return branches;
-    }
-
-
-    function animateCrack(
-      wrap,
-      delay
-    ) {
-
-      setTimeout(
-        () => {
-
-          const canvas =
-            wrap.querySelector(
-              ".crack-canvas"
-            );
-
-
-          const prepared =
-            prepareCrackCanvas(
-              canvas
-            );
-
-
-          const ctx =
-            prepared.context;
-
-
-          const width =
-            prepared.width;
-
-
-          const height =
-            prepared.height;
-
-
-          const branches =
-            createCrackStructure(
-              width,
-              height
-            );
-
-
-          wrap.classList.add(
-            "cracked"
-          );
-
-
-          let progress = 0;
-
-
-          /*
-            Roughly 700ms crack growth.
-          */
-
-          const duration = 700;
-
-          const start =
-            performance.now();
-
-
-          function drawFrame(now) {
-
-            progress =
-              Math.min(
-                1,
-                (now - start) /
-                duration
-              );
-
-
-            ctx.clearRect(
-              0,
-              0,
-              width,
-              height
-            );
-
-
-            branches.forEach(
-              points => {
-
-                const segments =
-                  points.length - 1;
-
-
-                const visible =
-                  progress *
-                  segments;
-
-
-                ctx.beginPath();
-
-
-                ctx.moveTo(
-                  points[0].x,
-                  points[0].y
-                );
-
-
-                for (
-                  let i = 0;
-                  i < segments;
-                  i++
-                ) {
-
-                  const amount =
-                    Math.max(
-                      0,
-                      Math.min(
-                        1,
-                        visible - i
-                      )
-                    );
-
-
-                  if (
-                    amount <= 0
-                  ) {
-                    break;
-                  }
-
-
-                  const startPoint =
-                    points[i];
-
-
-                  const endPoint =
-                    points[i + 1];
-
-
-                  const x =
-                    startPoint.x +
-                    (
-                      endPoint.x -
-                      startPoint.x
-                    ) *
-                    amount;
-
-
-                  const y =
-                    startPoint.y +
-                    (
-                      endPoint.y -
-                      startPoint.y
-                    ) *
-                    amount;
-
-
-                  ctx.lineTo(
-                    x,
-                    y
-                  );
-
-
-                  if (
-                    amount < 1
-                  ) {
-                    break;
-                  }
-                }
-
-
-                /*
-                  Dark fracture core.
-                */
-
-                ctx.strokeStyle =
-                  "rgba(1, 19, 31, 0.95)";
-
-
-                ctx.lineWidth = 3;
-
-
-                ctx.shadowBlur = 0;
-
-
-                ctx.stroke();
-
-
-                /*
-                  Blue-white energy inside the crack.
-                */
-
-                ctx.strokeStyle =
-                  "rgba(198, 244, 255, 0.98)";
-
-
-                ctx.lineWidth = 1;
-
-
-                ctx.shadowColor =
-                  "#55cfff";
-
-
-                ctx.shadowBlur = 9;
-
-
-                ctx.stroke();
-              }
-            );
-
-
-            if (
-              progress < 1
-            ) {
-
-              requestAnimationFrame(
-                drawFrame
-              );
-            }
-          }
-
-
-          requestAnimationFrame(
-            drawFrame
-          );
-
-        },
-        delay
-      );
-    }
-
-
-    function beginCracking() {
-
-      countdownEl.classList.remove(
-        "zero-charge"
-      );
-
-
-      countdownEl.classList.add(
-        "cracking"
-      );
-
-
-      /*
-        They do not all crack at exactly the same moment.
-
-        This gives us a quick left-to-right chain reaction.
-      */
-
-      animateCrack(
-        numberWraps[0],
-        0
-      );
-
-
-      animateCrack(
-        numberWraps[1],
-        140
-      );
-
-
-      animateCrack(
-        numberWraps[2],
-        280
-      );
-
-
-      animateCrack(
-        numberWraps[3],
-        420
-      );
-    }
-
-
-
-    /*
-      =====================================================
       FALLING FROST
       =====================================================
     */
@@ -1493,7 +1193,9 @@
 
 
     const frostCtx =
-      frostCanvas.getContext("2d");
+      frostCanvas.getContext(
+        "2d"
+      );
 
 
     const particles = [];
