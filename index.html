@@ -402,123 +402,6 @@
 
     /*
       =====================================================
-      PORTAL BLOOM
-      =====================================================
-
-      This begins invisible directly behind the timer.
-
-      Once activated it expands until the entire viewport
-      has been consumed by ice-blue / white light.
-    */
-
-    .portal-bloom {
-      position: fixed;
-
-      left: 50%;
-      top: 58%;
-
-      width: 120px;
-      height: 120px;
-
-      transform:
-        translate(-50%, -50%)
-        scale(0.01);
-
-      border-radius: 50%;
-
-      pointer-events: none;
-
-      z-index: 100;
-
-      opacity: 0;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255, 255, 255, 1) 0%,
-          rgba(232, 250, 255, 1) 18%,
-          rgba(174, 230, 255, 0.98) 36%,
-          rgba(83, 193, 247, 0.94) 58%,
-          rgba(21, 128, 207, 0.70) 76%,
-          rgba(7, 58, 101, 0) 100%
-        );
-
-      filter: blur(6px);
-    }
-
-    .portal-bloom.active {
-      animation:
-        portalBloom 3.4s
-        cubic-bezier(
-          0.16,
-          0.78,
-          0.18,
-          1
-        )
-        forwards;
-    }
-
-    /*
-      A second layer finishes the transition.
-
-      It stays transparent until the expanding bloom
-      has nearly consumed the viewport, then washes
-      everything into pale ice-white.
-    */
-
-    .whiteout {
-      position: fixed;
-      inset: 0;
-
-      pointer-events: none;
-
-      z-index: 110;
-
-      opacity: 0;
-
-      background:
-        radial-gradient(
-          circle at 50% 54%,
-          #ffffff 0%,
-          #effcff 34%,
-          #ccefff 68%,
-          #9ddcff 100%
-        );
-    }
-
-    .whiteout.active {
-      animation:
-        whiteout 3.4s ease-in forwards;
-    }
-
-    /*
-      =====================================================
-      ZERO STATES
-      =====================================================
-    */
-
-    .countdown.zero-hold .number {
-      animation: none;
-
-      filter:
-        drop-shadow(0 2px 0 #2a6584)
-        drop-shadow(0 0 7px rgba(197, 242, 255, 0.95))
-        drop-shadow(0 0 18px rgba(61, 183, 242, 0.75))
-        drop-shadow(0 0 38px rgba(21, 132, 196, 0.35));
-    }
-
-    .countdown.zero-charge .number {
-      animation:
-        zeroCharge 2.2s ease-in forwards;
-    }
-
-    .countdown.zero-charge .separator {
-      animation:
-        separatorCharge 2.2s ease-in forwards;
-    }
-
-    /*
-      =====================================================
       ANIMATIONS
       =====================================================
     */
@@ -555,117 +438,232 @@
       }
     }
 
-    @keyframes zeroCharge {
 
-      0% {
-        filter:
-          drop-shadow(0 2px 0 #2a6584)
-          drop-shadow(0 0 7px rgba(197, 242, 255, 0.95))
-          drop-shadow(0 0 18px rgba(61, 183, 242, 0.75))
-          drop-shadow(0 0 38px rgba(21, 132, 196, 0.35));
-      }
+    /* =====================================================
+       WAR ROOM NAVIGATION
+       ===================================================== */
 
-      45% {
-        filter:
-          drop-shadow(0 2px 0 #3b7d9d)
-          drop-shadow(0 0 18px rgba(231, 252, 255, 1))
-          drop-shadow(0 0 42px rgba(94, 207, 255, 1))
-          drop-shadow(0 0 90px rgba(32, 158, 232, 0.80));
-      }
+    .war-nav {
+      position: fixed;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
 
-      100% {
-        filter:
-          drop-shadow(0 2px 0 #8accea)
-          drop-shadow(0 0 25px rgba(255, 255, 255, 1))
-          drop-shadow(0 0 65px rgba(178, 238, 255, 1))
-          drop-shadow(0 0 135px rgba(62, 192, 255, 1))
-          drop-shadow(0 0 220px rgba(18, 128, 215, 0.80));
-      }
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 6px;
+
+      border: 1px solid rgba(112, 205, 255, 0.13);
+      border-radius: 12px;
+
+      background: rgba(2, 8, 13, 0.66);
+
+      box-shadow:
+        0 0 26px rgba(45, 178, 239, 0.06),
+        inset 0 0 18px rgba(83, 194, 244, 0.025);
+
+      backdrop-filter: blur(10px);
     }
 
-    @keyframes separatorCharge {
+    .war-nav-button {
+      min-width: 150px;
+      height: 40px;
 
-      0% {
-        opacity: 0.55;
+      padding: 0 18px;
 
-        text-shadow:
-          0 0 8px rgba(151, 225, 255, 0.9),
-          0 0 25px rgba(47, 175, 237, 0.55);
-      }
+      border: 1px solid transparent;
+      border-radius: 8px;
 
-      100% {
-        opacity: 1;
+      background: transparent;
 
-        text-shadow:
-          0 0 22px rgba(255, 255, 255, 1),
-          0 0 60px rgba(130, 225, 255, 1),
-          0 0 120px rgba(34, 161, 231, 0.90);
-      }
+      color: #526f80;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
     }
 
-    @keyframes portalBloom {
+    .war-nav-button.active {
+      color: #d9f6ff;
 
-      0% {
-        opacity: 0;
-        transform:
-          translate(-50%, -50%)
-          scale(0.01);
-      }
+      border-color: rgba(105, 207, 255, 0.27);
 
-      10% {
-        opacity: 0.55;
-      }
+      background:
+        linear-gradient(
+          180deg,
+          rgba(65, 181, 235, 0.12),
+          rgba(12, 67, 96, 0.07)
+        );
 
-      28% {
-        opacity: 0.95;
-        transform:
-          translate(-50%, -50%)
-          scale(1.8);
-      }
+      box-shadow:
+        inset 0 -2px 0 rgba(103, 207, 255, 0.70),
+        0 0 17px rgba(74, 193, 249, 0.10);
 
-      58% {
-        opacity: 1;
-        transform:
-          translate(-50%, -50%)
-          scale(7);
-      }
-
-      82% {
-        opacity: 1;
-        transform:
-          translate(-50%, -50%)
-          scale(16);
-      }
-
-      100% {
-        opacity: 1;
-        transform:
-          translate(-50%, -50%)
-          scale(28);
-      }
+      text-shadow:
+        0 0 11px rgba(111, 211, 255, 0.55);
     }
 
-    @keyframes whiteout {
+    .war-nav-button.locked {
+      color: #354b58;
+      cursor: not-allowed;
+    }
 
+    .war-nav-button.unlocked {
+      color: #8ecce8;
+    }
+
+    .war-nav-button.unlocked:hover {
+      color: #d9f6ff;
+      border-color: rgba(105, 207, 255, 0.20);
+      background: rgba(52, 166, 220, 0.06);
+    }
+
+    .war-nav-button.lock-pulse {
+      animation: lockPulse 420ms ease;
+    }
+
+    .war-nav-message {
+      position: fixed;
+      top: 82px;
+      left: 50%;
+      transform: translate(-50%, -5px);
+      z-index: 41;
+
+      padding: 8px 14px;
+
+      border: 1px solid rgba(100, 198, 243, 0.12);
+      border-radius: 7px;
+
+      background: rgba(2, 8, 13, 0.84);
+
+      color: #5f8194;
+
+      font-size: 8px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+    }
+
+    .war-nav-message.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .war-room-placeholder {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 25;
+
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(17, 112, 172, 0.12),
+          transparent 38%
+        ),
+        #010305;
+
+      text-align: center;
+    }
+
+    .war-room-placeholder.visible {
+      display: flex;
+    }
+
+    .war-room-placeholder h2 {
+      font-family:
+        Impact,
+        "Arial Black",
+        sans-serif;
+
+      font-size:
+        clamp(56px, 8vw, 110px);
+
+      letter-spacing: 0.05em;
+
+      color: #dff7ff;
+
+      text-shadow:
+        0 0 4px #ffffff,
+        0 0 12px #8bdcff,
+        0 0 32px rgba(67, 189, 255, 0.55);
+    }
+
+    .war-room-placeholder p {
+      margin-top: 18px;
+
+      color: #53778c;
+
+      font-size: 9px;
+      letter-spacing: 0.48em;
+      text-transform: uppercase;
+    }
+
+    .sealed.open {
+      color: #69c8f5;
+
+      text-shadow:
+        0 0 12px rgba(79, 190, 242, 0.45);
+    }
+
+    @keyframes lockPulse {
       0%,
-      48% {
-        opacity: 0;
-      }
-
-      70% {
-        opacity: 0.20;
-      }
-
-      86% {
-        opacity: 0.70;
-      }
-
       100% {
-        opacity: 1;
+        transform: translateX(0);
+      }
+
+      30% {
+        transform: translateX(-3px);
+      }
+
+      65% {
+        transform: translateX(3px);
       }
     }
 
     @media (max-width: 700px) {
+
+      .war-nav {
+        top: 14px;
+      }
+
+      .war-nav-button {
+        min-width: 120px;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 7px;
+      }
+
+      .war-nav-message {
+        top: 66px;
+        max-width: 90vw;
+        text-align: center;
+        white-space: nowrap;
+      }
+
 
       .portal-header {
         margin-bottom: 28px;
@@ -720,24 +718,38 @@
 
 <body>
 
+  <nav class="war-nav" aria-label="Frostbite War Room navigation">
+
+    <button
+      class="war-nav-button active"
+      id="countdownTab"
+      type="button"
+    >
+      COUNTDOWN
+    </button>
+
+    <button
+      class="war-nav-button locked"
+      id="warRoomTab"
+      type="button"
+      aria-disabled="true"
+    >
+      <span id="warRoomLock">🔒</span>
+      WAR ROOM
+    </button>
+
+  </nav>
+
+  <div
+    class="war-nav-message"
+    id="warNavMessage"
+  >
+    WAR ROOM SEALED • OPENS WHEN HOSTILITIES BEGIN
+  </div>
+
+
   <canvas id="frostCanvas"></canvas>
-
-  <!--
-    These two layers perform the portal transition.
-  -->
-
-  <div
-    class="portal-bloom"
-    id="portalBloom"
-  ></div>
-
-  <div
-    class="whiteout"
-    id="whiteout"
-  ></div>
-
-
-  <main class="war-portal">
+<main class="war-portal" id="countdownView">
 
     <div class="mist"></div>
 
@@ -908,7 +920,7 @@
       <div class="void-space"></div>
 
 
-      <p class="sealed">
+      <p class="sealed" id="portalStatus">
         THE PORTAL REMAINS SEALED
       </p>
 
@@ -917,30 +929,40 @@
   </main>
 
 
+  <section
+    class="war-room-placeholder"
+    id="warRoomView"
+  >
+
+    <div>
+
+      <h2>
+        WAR ROOM
+      </h2>
+
+      <p>
+        FROSTBITE COMMAND • ACCESS GRANTED
+      </p>
+
+    </div>
+
+  </section>
+
+
   <script>
 
     /*
       =====================================================
-      PORTAL TRANSITION TEST
+      COUNTDOWN + WAR ROOM LOCK
       =====================================================
 
-      10 second countdown
-            ↓
-      00 : 00 : 00 : 00
-            ↓
-      500ms dead stop
-            ↓
-      timer glow intensifies
-            ↓
-      portal bloom begins
-            ↓
-      light expands across viewport
-            ↓
-      complete ice-white screen
+      Temporary 10 second countdown remains for testing.
 
-      STOP.
-
-      The War Room reveal comes next.
+      At zero:
+      - countdown stays visible
+      - portal transition does NOT run
+      - WAR ROOM tab unlocks
+      - user chooses when to enter the War Room
     */
 
     const TEST_COUNTDOWN_SECONDS = 10;
@@ -948,12 +970,6 @@
     const temporaryTarget =
       Date.now() +
       (TEST_COUNTDOWN_SECONDS * 1000);
-
-
-    const countdownEl =
-      document.getElementById(
-        "countdown"
-      );
 
 
     const daysEl =
@@ -980,20 +996,52 @@
       );
 
 
-    const portalBloom =
+    const countdownTab =
       document.getElementById(
-        "portalBloom"
+        "countdownTab"
       );
 
 
-    const whiteout =
+    const warRoomTab =
       document.getElementById(
-        "whiteout"
+        "warRoomTab"
+      );
+
+
+    const warRoomLock =
+      document.getElementById(
+        "warRoomLock"
+      );
+
+
+    const warNavMessage =
+      document.getElementById(
+        "warNavMessage"
+      );
+
+
+    const countdownView =
+      document.getElementById(
+        "countdownView"
+      );
+
+
+    const warRoomView =
+      document.getElementById(
+        "warRoomView"
+      );
+
+
+    const portalStatus =
+      document.getElementById(
+        "portalStatus"
       );
 
 
     let countdownFinished = false;
+    let warRoomUnlocked = false;
     let frostActive = true;
+    let messageTimer = null;
 
 
     function pad(value) {
@@ -1003,90 +1051,156 @@
     }
 
 
-    function beginZeroSequence() {
+    function unlockWarRoom() {
 
-      if (countdownFinished) {
+      if (warRoomUnlocked) {
         return;
       }
 
 
-      countdownFinished = true;
+      warRoomUnlocked = true;
+
+
+      warRoomTab.classList.remove(
+        "locked"
+      );
+
+
+      warRoomTab.classList.add(
+        "unlocked"
+      );
+
+
+      warRoomTab.setAttribute(
+        "aria-disabled",
+        "false"
+      );
+
+
+      warRoomLock.textContent =
+        "❄";
+
+
+      portalStatus.textContent =
+        "THE WAR ROOM IS OPEN";
+
+
+      portalStatus.classList.add(
+        "open"
+      );
+    }
+
+
+    function showLockedMessage() {
+
+      clearTimeout(
+        messageTimer
+      );
+
+
+      warRoomTab.classList.remove(
+        "lock-pulse"
+      );
+
+
+      void warRoomTab.offsetWidth;
+
+
+      warRoomTab.classList.add(
+        "lock-pulse"
+      );
+
+
+      warNavMessage.classList.add(
+        "visible"
+      );
+
+
+      messageTimer =
+        setTimeout(
+          () => {
+
+            warNavMessage.classList.remove(
+              "visible"
+            );
+
+          },
+          1800
+        );
+    }
+
+
+    function showCountdown() {
+
+      countdownView.style.display =
+        "flex";
+
+
+      warRoomView.classList.remove(
+        "visible"
+      );
+
+
+      countdownTab.classList.add(
+        "active"
+      );
+
+
+      warRoomTab.classList.remove(
+        "active"
+      );
+
+
+      frostActive = true;
+
+
+      scheduleFrostDrop();
+    }
+
+
+    function showWarRoom() {
+
+      if (!warRoomUnlocked) {
+
+        showLockedMessage();
+
+        return;
+      }
+
+
+      countdownView.style.display =
+        "none";
+
+
+      warRoomView.classList.add(
+        "visible"
+      );
+
+
+      countdownTab.classList.remove(
+        "active"
+      );
+
+
+      warRoomTab.classList.add(
+        "active"
+      );
+
 
       frostActive = false;
-
-
-      daysEl.textContent = "00";
-      hoursEl.textContent = "00";
-      minutesEl.textContent = "00";
-      secondsEl.textContent = "00";
-
-
-      /*
-        STEP A
-
-        Complete stillness.
-      */
-
-      countdownEl.classList.add(
-        "zero-hold"
-      );
-
-
-      setTimeout(
-        () => {
-
-          /*
-            STEP B
-
-            Energy begins building inside
-            the frozen countdown.
-          */
-
-          countdownEl.classList.remove(
-            "zero-hold"
-          );
-
-
-          countdownEl.classList.add(
-            "zero-charge"
-          );
-
-
-          /*
-            We allow the timer itself to build
-            pressure before releasing the bloom.
-          */
-
-          setTimeout(
-            beginPortalBloom,
-            1350
-          );
-
-        },
-        500
-      );
     }
 
 
-    function beginPortalBloom() {
-
-      /*
-        STEP C
-
-        The blue-white energy escapes the
-        countdown and begins consuming
-        the viewport.
-      */
-
-      portalBloom.classList.add(
-        "active"
-      );
+    countdownTab.addEventListener(
+      "click",
+      showCountdown
+    );
 
 
-      whiteout.classList.add(
-        "active"
-      );
-    }
+    warRoomTab.addEventListener(
+      "click",
+      showWarRoom
+    );
 
 
     function updateCountdown() {
@@ -1152,7 +1266,16 @@
 
       if (remaining <= 0) {
 
-        beginZeroSequence();
+        countdownFinished = true;
+
+
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+
+
+        unlockWarRoom();
       }
     }
 
@@ -1528,14 +1651,30 @@
 
 
 
+    let frostDropScheduled = false;
+
+
     function scheduleFrostDrop() {
 
-      if (!frostActive) {
+      if (frostDropScheduled) {
         return;
       }
 
 
-      createFrostParticle();
+      frostDropScheduled = true;
+
+
+      function runFrostDrop() {
+
+        if (!frostActive) {
+
+          frostDropScheduled = false;
+
+          return;
+        }
+
+
+        createFrostParticle();
 
 
       if (
@@ -1585,9 +1724,13 @@
 
 
       setTimeout(
-        scheduleFrostDrop,
+        runFrostDrop,
         nextDrop
       );
+      }
+
+
+      runFrostDrop();
     }
 
 
