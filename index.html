@@ -359,11 +359,6 @@
       opacity: 0.35;
     }
 
-    /*
-      SMALL ICICLES ATTACHED DIRECTLY
-      TO THE COUNTDOWN DIGITS
-    */
-
     .digit-icicle {
       position: absolute;
 
@@ -468,13 +463,6 @@
         separatorPulse 1.5s ease-in-out infinite;
     }
 
-    /*
-      THERE IS DELIBERATELY NO HORIZONTAL
-      ICE SHELF IN THIS VERSION.
-
-      THE NUMBERS NOW FLOAT ABOVE THE ABYSS.
-    */
-
     .void-space {
       position: relative;
 
@@ -497,36 +485,6 @@
       letter-spacing: 0.48em;
 
       text-transform: uppercase;
-    }
-
-    .abyss {
-      position: absolute;
-
-      left: 50%;
-
-      bottom: -18vh;
-
-      transform:
-        translateX(-50%);
-
-      width: 110vw;
-
-      height: 39vh;
-
-      background:
-        radial-gradient(
-          ellipse at top,
-          rgba(13, 72, 105, 0.12),
-          transparent 43%
-        ),
-        linear-gradient(
-          transparent,
-          rgba(0,0,0,0.95)
-        );
-
-      pointer-events: none;
-
-      z-index: -1;
     }
 
     #frostCanvas {
@@ -817,23 +775,16 @@
 
     </section>
 
-
-    <div class="abyss"></div>
-
   </main>
 
 
   <script>
 
     /*
-      =====================================================
-      TEMPORARY VISUAL COUNTDOWN
-      =====================================================
+      TEMPORARY LANDING PAGE COUNTDOWN
 
-      We are still approving the landing page.
-
-      Torn synchronization comes after the visual portal
-      has been locked.
+      We are locking the visual design first.
+      Torn synchronization comes later.
     */
 
     const temporaryTarget =
@@ -932,18 +883,10 @@
 
 
     /*
-      =====================================================
       FROST PARTICLE SYSTEM
-      =====================================================
 
-      Frost now originates DIRECTLY from the countdown
-      digits instead of a horizontal shelf.
-
-      Most particles are tiny frost crystals.
-
-      Occasionally a larger chunk of ice breaks loose.
+      Frost originates directly from the countdown digits.
     */
-
 
     const canvas =
       document.getElementById(
@@ -1041,11 +984,6 @@
         source.getBoundingClientRect();
 
 
-      /*
-        Particle originates somewhere across the
-        lower section of the actual number.
-      */
-
       const x =
         rect.left +
         rect.width *
@@ -1065,13 +1003,6 @@
           0.25
         );
 
-
-      /*
-        Most particles are tiny.
-
-        Roughly 10% become noticeably larger
-        fragments.
-      */
 
       const largeChunk =
         Math.random() < 0.10;
@@ -1228,10 +1159,6 @@
             : 7;
 
 
-        /*
-          Slightly irregular ice fragment shape.
-        */
-
         ctx.beginPath();
 
 
@@ -1300,25 +1227,10 @@
 
 
 
-    /*
-      Particle timing is intentionally irregular.
-
-      We do NOT want a constant waterfall.
-
-      The countdown should look like frost is
-      naturally breaking away.
-    */
-
-
     function scheduleFrostDrop() {
 
       createFrostParticle();
 
-
-      /*
-        Occasionally several crystals loosen
-        together.
-      */
 
       if (
         Math.random() <
@@ -1347,11 +1259,6 @@
         );
       }
 
-
-      /*
-        Random delay prevents the effect from
-        looking mechanically timed.
-      */
 
       const nextDrop =
         160 +
