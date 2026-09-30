@@ -78,14 +78,11 @@
 
     .mist {
       position: absolute;
-
       width: 900px;
       max-width: 90vw;
       height: 300px;
-
       top: 49%;
       left: 50%;
-
       transform: translate(-50%, -50%);
 
       background:
@@ -96,21 +93,16 @@
         );
 
       filter: blur(30px);
-
       pointer-events: none;
-
       z-index: -2;
     }
 
     .portal-ring {
       position: absolute;
-
       width: min(760px, 76vw);
       height: min(570px, 68vh);
-
       top: 50%;
       left: 50%;
-
       transform: translate(-50%, -47%);
 
       border-radius: 50% 50% 10% 10%;
@@ -132,13 +124,9 @@
 
     .motto {
       margin-bottom: 10px;
-
       color: #7fa4b8;
-
       font-size: 11px;
-
       letter-spacing: 0.48em;
-
       text-transform: uppercase;
     }
 
@@ -154,9 +142,7 @@
         clamp(58px, 8vw, 118px);
 
       line-height: 0.88;
-
       letter-spacing: 0.045em;
-
       color: #dff7ff;
 
       text-shadow:
@@ -168,14 +154,10 @@
 
     .frostbite-title::after {
       content: "";
-
       position: absolute;
-
       left: 8%;
       right: 8%;
-
       bottom: -11px;
-
       height: 10px;
 
       background:
@@ -189,37 +171,27 @@
         );
 
       filter: blur(6px);
-
       opacity: 0.45;
     }
 
     .war-room-label {
       margin-top: 20px;
-
       color: #53778c;
-
       font-size: 10px;
-
       letter-spacing: 0.75em;
-
       text-transform: uppercase;
     }
 
     .matchup {
       margin-bottom: 26px;
-
       text-align: center;
     }
 
     .ranked-war {
       margin-bottom: 8px;
-
       color: #58798b;
-
       font-size: 9px;
-
       letter-spacing: 0.42em;
-
       text-transform: uppercase;
     }
 
@@ -228,52 +200,37 @@
         clamp(16px, 2vw, 23px);
 
       font-weight: 700;
-
       letter-spacing: 0.22em;
-
       color: #b7d7e8;
-
       text-transform: uppercase;
     }
 
     .matchup-name strong {
       padding: 0 18px;
-
       color: #70ccfa;
-
       font-size: 0.8em;
     }
 
     .countdown-section {
       position: relative;
-
-      width:
-        min(1180px, 94vw);
-
+      width: min(1180px, 94vw);
       text-align: center;
     }
 
     .war-begins {
       margin-bottom: 19px;
-
       color: #b2cedc;
-
       font-size: 12px;
-
       letter-spacing: 0.55em;
-
       text-transform: uppercase;
     }
 
     .countdown {
       position: relative;
-
       z-index: 5;
 
       display: flex;
-
       align-items: flex-start;
-
       justify-content: center;
 
       gap:
@@ -291,13 +248,11 @@
 
     .number-wrap {
       position: relative;
-
       display: inline-block;
     }
 
     .number {
       position: relative;
-
       display: block;
 
       font-family:
@@ -309,7 +264,6 @@
         clamp(62px, 9vw, 128px);
 
       line-height: 0.90;
-
       letter-spacing: -0.02em;
 
       background:
@@ -323,9 +277,7 @@
         );
 
       -webkit-background-clip: text;
-
       background-clip: text;
-
       color: transparent;
 
       filter:
@@ -340,32 +292,50 @@
 
     .number::before {
       content: "";
-
       position: absolute;
-
       left: 12%;
       right: 12%;
-
       bottom: -5px;
-
       height: 7px;
 
       border-radius: 50%;
-
       background: #c8f1ff;
-
       filter: blur(4px);
-
       opacity: 0.35;
     }
 
     /*
-      STEP 1 TRANSITION
+      =====================================================
+      CRACK CANVAS
+      =====================================================
 
-      Once the countdown reaches zero the normal pulse stops.
+      Each number gets its own transparent canvas.
 
-      After a short frozen pause the zeroes begin building
-      a much stronger icy glow.
+      The crack is drawn over the actual frozen digits
+      after the zero-charge sequence completes.
+    */
+
+    .crack-canvas {
+      position: absolute;
+      inset: -10% -12%;
+      width: 124%;
+      height: 120%;
+
+      pointer-events: none;
+
+      z-index: 8;
+
+      opacity: 0;
+    }
+
+    .number-wrap.cracked .crack-canvas {
+      opacity: 1;
+    }
+
+    /*
+      =====================================================
+      STEP 1 ZERO STATES
+      =====================================================
     */
 
     .countdown.zero-hold .number {
@@ -388,9 +358,34 @@
         separatorCharge 2.4s ease-in-out forwards;
     }
 
+    /*
+      Once the cracking begins we keep the numbers
+      at their fully charged brightness.
+    */
+
+    .countdown.cracking .number {
+      animation: none;
+
+      filter:
+        drop-shadow(0 2px 0 #5ba5c8)
+        drop-shadow(0 0 18px rgba(255, 255, 255, 1))
+        drop-shadow(0 0 45px rgba(140, 225, 255, 1))
+        drop-shadow(0 0 95px rgba(46, 181, 247, 0.90))
+        drop-shadow(0 0 150px rgba(18, 128, 215, 0.55));
+    }
+
+    .countdown.cracking .separator {
+      animation: none;
+      opacity: 1;
+
+      text-shadow:
+        0 0 15px rgba(230, 250, 255, 1),
+        0 0 40px rgba(90, 207, 255, 1),
+        0 0 80px rgba(34, 161, 231, 0.75);
+    }
+
     .digit-icicle {
       position: absolute;
-
       z-index: -1;
 
       width: 0;
@@ -416,63 +411,47 @@
     .icicle-a {
       left: 26%;
       bottom: -10px;
-
-      transform:
-        rotate(3deg);
-
+      transform: rotate(3deg);
       border-top-width: 18px;
     }
 
     .icicle-b {
       right: 20%;
       bottom: -8px;
-
-      transform:
-        rotate(-4deg);
-
+      transform: rotate(-4deg);
       border-top-width: 12px;
-
       opacity: 0.60;
     }
 
     .time-unit:nth-of-type(3)
     .icicle-a {
       left: 55%;
-
       border-top-width: 22px;
     }
 
     .time-unit:nth-of-type(5)
     .icicle-b {
       right: 34%;
-
       border-top-width: 17px;
     }
 
     .time-unit:nth-of-type(7)
     .icicle-a {
       left: 18%;
-
       border-top-width: 14px;
     }
 
     .time-label {
       display: block;
-
       margin-top: 24px;
-
       color: #789aad;
-
       font-size: 9px;
-
       letter-spacing: 0.42em;
-
       text-transform: uppercase;
     }
 
     .separator {
       margin-top: -2px;
-
       color: #7ed7ff;
 
       font-family:
@@ -494,39 +473,26 @@
 
     .void-space {
       position: relative;
-
       width: 100%;
-
       height: 76px;
     }
 
     .sealed {
       position: relative;
-
       z-index: 3;
-
       margin-top: 0;
-
       color: #42677c;
-
       font-size: 9px;
-
       letter-spacing: 0.48em;
-
       text-transform: uppercase;
     }
 
     #frostCanvas {
       position: fixed;
-
       inset: 0;
-
       width: 100%;
-
       height: 100%;
-
       pointer-events: none;
-
       z-index: 20;
     }
 
@@ -534,7 +500,6 @@
 
       0%,
       100% {
-
         filter:
           drop-shadow(0 2px 0 #2a6584)
           drop-shadow(0 0 7px rgba(197, 242, 255, 0.85))
@@ -543,7 +508,6 @@
       }
 
       50% {
-
         filter:
           drop-shadow(0 2px 0 #2a6584)
           drop-shadow(0 0 10px rgba(225, 250, 255, 1))
@@ -620,7 +584,6 @@
 
       .motto {
         font-size: 7px;
-
         letter-spacing: 0.25em;
       }
 
@@ -646,9 +609,7 @@
 
       .time-label {
         margin-top: 18px;
-
         font-size: 6px;
-
         letter-spacing: 0.18em;
       }
 
@@ -702,13 +663,9 @@
       </p>
 
       <p class="matchup-name">
-
         FROSTBITE
-
         <strong>VS</strong>
-
         W.M.D
-
       </p>
 
     </section>
@@ -736,6 +693,10 @@
             >
               00
             </span>
+
+            <canvas
+              class="crack-canvas"
+            ></canvas>
 
             <span
               class="digit-icicle icicle-a"
@@ -765,6 +726,10 @@
             >
               00
             </span>
+
+            <canvas
+              class="crack-canvas"
+            ></canvas>
 
             <span
               class="digit-icicle icicle-a"
@@ -799,6 +764,10 @@
               00
             </span>
 
+            <canvas
+              class="crack-canvas"
+            ></canvas>
+
             <span
               class="digit-icicle icicle-b"
             ></span>
@@ -827,6 +796,10 @@
             >
               10
             </span>
+
+            <canvas
+              class="crack-canvas"
+            ></canvas>
 
             <span
               class="digit-icicle icicle-a"
@@ -859,17 +832,20 @@
 
     /*
       =====================================================
-      STEP 1 TRANSITION TEST
+      STEP 2 TRANSITION TEST
       =====================================================
 
-      Temporary ten-second countdown.
-
-      At zero:
-
-      1. Countdown locks.
-      2. Frost generation stops.
-      3. Everything holds still for 500ms.
-      4. The zeroes begin charging with icy light.
+      10 seconds
+      ↓
+      zero
+      ↓
+      500ms dead stop
+      ↓
+      2.4 second energy charge
+      ↓
+      cracks begin forming
+      ↓
+      fractured zeroes remain on screen
     */
 
     const TEST_COUNTDOWN_SECONDS = 10;
@@ -896,7 +872,6 @@
 
 
     let countdownFinished = false;
-
     let frostActive = true;
 
 
@@ -925,21 +900,13 @@
       secondsEl.textContent = "00";
 
 
-      /*
-        Remove the normal countdown animation.
-
-        Everything now becomes completely still.
-      */
-
       countdownEl.classList.add(
         "zero-hold"
       );
 
 
       /*
-        Half-second silence.
-
-        Then the ice begins charging.
+        500ms of total stillness.
       */
 
       setTimeout(
@@ -949,9 +916,20 @@
             "zero-hold"
           );
 
-
           countdownEl.classList.add(
             "zero-charge"
+          );
+
+
+          /*
+            zeroCharge lasts 2.4 seconds.
+
+            Once fully charged we begin cracking.
+          */
+
+          setTimeout(
+            beginCracking,
+            2400
           );
 
         },
@@ -974,11 +952,6 @@
           Date.now()
         );
 
-
-      /*
-        Ceiling is used here so the displayed timer
-        actually shows the full final second before zero.
-      */
 
       const totalSeconds =
         Math.ceil(
@@ -1013,14 +986,11 @@
       daysEl.textContent =
         pad(days);
 
-
       hoursEl.textContent =
         pad(hours);
 
-
       minutesEl.textContent =
         pad(minutes);
-
 
       secondsEl.textContent =
         pad(seconds);
@@ -1058,18 +1028,472 @@
 
     /*
       =====================================================
-      FROST PARTICLE SYSTEM
+      CRACK SYSTEM
       =====================================================
     */
 
-    const canvas =
+    const numberWraps =
+      Array.from(
+        document.querySelectorAll(
+          ".number-wrap"
+        )
+      );
+
+
+    function prepareCrackCanvas(
+      canvas
+    ) {
+
+      const rect =
+        canvas.getBoundingClientRect();
+
+
+      const ratio =
+        window.devicePixelRatio || 1;
+
+
+      canvas.width =
+        Math.max(
+          1,
+          rect.width * ratio
+        );
+
+
+      canvas.height =
+        Math.max(
+          1,
+          rect.height * ratio
+        );
+
+
+      const context =
+        canvas.getContext("2d");
+
+
+      context.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+      );
+
+
+      return {
+        context,
+        width: rect.width,
+        height: rect.height
+      };
+    }
+
+
+    /*
+      Creates one branching fracture.
+
+      The crack starts around the middle region of the
+      frozen number and grows outward in several branches.
+    */
+
+    function createCrackStructure(
+      width,
+      height
+    ) {
+
+      const centerX =
+        width *
+        (
+          0.38 +
+          Math.random() *
+          0.24
+        );
+
+
+      const centerY =
+        height *
+        (
+          0.32 +
+          Math.random() *
+          0.30
+        );
+
+
+      const branches = [];
+
+
+      const branchCount =
+        5 +
+        Math.floor(
+          Math.random() * 3
+        );
+
+
+      for (
+        let b = 0;
+        b < branchCount;
+        b++
+      ) {
+
+        const points = [];
+
+
+        let x = centerX;
+        let y = centerY;
+
+
+        points.push({
+          x,
+          y
+        });
+
+
+        const baseAngle =
+          (
+            Math.PI * 2 /
+            branchCount
+          ) * b +
+          (
+            Math.random() -
+            0.5
+          ) * 0.65;
+
+
+        const segmentCount =
+          3 +
+          Math.floor(
+            Math.random() * 3
+          );
+
+
+        for (
+          let s = 0;
+          s < segmentCount;
+          s++
+        ) {
+
+          const distance =
+            (
+              width * 0.08
+            ) +
+            Math.random() *
+            (
+              width * 0.10
+            );
+
+
+          const angle =
+            baseAngle +
+            (
+              Math.random() -
+              0.5
+            ) * 0.65;
+
+
+          x +=
+            Math.cos(angle) *
+            distance;
+
+
+          y +=
+            Math.sin(angle) *
+            distance;
+
+
+          points.push({
+            x,
+            y
+          });
+        }
+
+
+        branches.push(
+          points
+        );
+      }
+
+
+      return branches;
+    }
+
+
+    function animateCrack(
+      wrap,
+      delay
+    ) {
+
+      setTimeout(
+        () => {
+
+          const canvas =
+            wrap.querySelector(
+              ".crack-canvas"
+            );
+
+
+          const prepared =
+            prepareCrackCanvas(
+              canvas
+            );
+
+
+          const ctx =
+            prepared.context;
+
+
+          const width =
+            prepared.width;
+
+
+          const height =
+            prepared.height;
+
+
+          const branches =
+            createCrackStructure(
+              width,
+              height
+            );
+
+
+          wrap.classList.add(
+            "cracked"
+          );
+
+
+          let progress = 0;
+
+
+          /*
+            Roughly 700ms crack growth.
+          */
+
+          const duration = 700;
+
+          const start =
+            performance.now();
+
+
+          function drawFrame(now) {
+
+            progress =
+              Math.min(
+                1,
+                (now - start) /
+                duration
+              );
+
+
+            ctx.clearRect(
+              0,
+              0,
+              width,
+              height
+            );
+
+
+            branches.forEach(
+              points => {
+
+                const segments =
+                  points.length - 1;
+
+
+                const visible =
+                  progress *
+                  segments;
+
+
+                ctx.beginPath();
+
+
+                ctx.moveTo(
+                  points[0].x,
+                  points[0].y
+                );
+
+
+                for (
+                  let i = 0;
+                  i < segments;
+                  i++
+                ) {
+
+                  const amount =
+                    Math.max(
+                      0,
+                      Math.min(
+                        1,
+                        visible - i
+                      )
+                    );
+
+
+                  if (
+                    amount <= 0
+                  ) {
+                    break;
+                  }
+
+
+                  const startPoint =
+                    points[i];
+
+
+                  const endPoint =
+                    points[i + 1];
+
+
+                  const x =
+                    startPoint.x +
+                    (
+                      endPoint.x -
+                      startPoint.x
+                    ) *
+                    amount;
+
+
+                  const y =
+                    startPoint.y +
+                    (
+                      endPoint.y -
+                      startPoint.y
+                    ) *
+                    amount;
+
+
+                  ctx.lineTo(
+                    x,
+                    y
+                  );
+
+
+                  if (
+                    amount < 1
+                  ) {
+                    break;
+                  }
+                }
+
+
+                /*
+                  Dark fracture core.
+                */
+
+                ctx.strokeStyle =
+                  "rgba(1, 19, 31, 0.95)";
+
+
+                ctx.lineWidth = 3;
+
+
+                ctx.shadowBlur = 0;
+
+
+                ctx.stroke();
+
+
+                /*
+                  Blue-white energy inside the crack.
+                */
+
+                ctx.strokeStyle =
+                  "rgba(198, 244, 255, 0.98)";
+
+
+                ctx.lineWidth = 1;
+
+
+                ctx.shadowColor =
+                  "#55cfff";
+
+
+                ctx.shadowBlur = 9;
+
+
+                ctx.stroke();
+              }
+            );
+
+
+            if (
+              progress < 1
+            ) {
+
+              requestAnimationFrame(
+                drawFrame
+              );
+            }
+          }
+
+
+          requestAnimationFrame(
+            drawFrame
+          );
+
+        },
+        delay
+      );
+    }
+
+
+    function beginCracking() {
+
+      countdownEl.classList.remove(
+        "zero-charge"
+      );
+
+
+      countdownEl.classList.add(
+        "cracking"
+      );
+
+
+      /*
+        They do not all crack at exactly the same moment.
+
+        This gives us a quick left-to-right chain reaction.
+      */
+
+      animateCrack(
+        numberWraps[0],
+        0
+      );
+
+
+      animateCrack(
+        numberWraps[1],
+        140
+      );
+
+
+      animateCrack(
+        numberWraps[2],
+        280
+      );
+
+
+      animateCrack(
+        numberWraps[3],
+        420
+      );
+    }
+
+
+
+    /*
+      =====================================================
+      FALLING FROST
+      =====================================================
+    */
+
+    const frostCanvas =
       document.getElementById(
         "frostCanvas"
       );
 
 
-    const ctx =
-      canvas.getContext("2d");
+    const frostCtx =
+      frostCanvas.getContext("2d");
 
 
     const particles = [];
@@ -1077,45 +1501,41 @@
 
     const numberElements = [
 
-      document.getElementById("days"),
-
-      document.getElementById("hours"),
-
-      document.getElementById("minutes"),
-
-      document.getElementById("seconds")
+      daysEl,
+      hoursEl,
+      minutesEl,
+      secondsEl
 
     ];
 
 
-
-    function resizeCanvas() {
+    function resizeFrostCanvas() {
 
       const ratio =
         window.devicePixelRatio || 1;
 
 
-      canvas.width =
+      frostCanvas.width =
         window.innerWidth *
         ratio;
 
 
-      canvas.height =
+      frostCanvas.height =
         window.innerHeight *
         ratio;
 
 
-      canvas.style.width =
+      frostCanvas.style.width =
         window.innerWidth +
         "px";
 
 
-      canvas.style.height =
+      frostCanvas.style.height =
         window.innerHeight +
         "px";
 
 
-      ctx.setTransform(
+      frostCtx.setTransform(
         ratio,
         0,
         0,
@@ -1128,11 +1548,11 @@
 
     window.addEventListener(
       "resize",
-      resizeCanvas
+      resizeFrostCanvas
     );
 
 
-    resizeCanvas();
+    resizeFrostCanvas();
 
 
 
@@ -1189,9 +1609,9 @@
 
       particles.push({
 
-        x: x,
+        x,
 
-        y: y,
+        y,
 
         vx:
           (Math.random() - 0.5) *
@@ -1258,7 +1678,7 @@
 
     function drawParticles() {
 
-      ctx.clearRect(
+      frostCtx.clearRect(
         0,
         0,
         window.innerWidth,
@@ -1301,83 +1721,83 @@
             : 0.0018;
 
 
-        ctx.save();
+        frostCtx.save();
 
 
-        ctx.translate(
+        frostCtx.translate(
           p.x,
           p.y
         );
 
 
-        ctx.rotate(
+        frostCtx.rotate(
           p.rotation
         );
 
 
-        ctx.globalAlpha =
+        frostCtx.globalAlpha =
           Math.max(
             0,
             p.alpha
           );
 
 
-        ctx.fillStyle =
+        frostCtx.fillStyle =
           p.large
             ? "#8fd8f8"
             : "#e8faff";
 
 
-        ctx.shadowColor =
+        frostCtx.shadowColor =
           "#56caff";
 
 
-        ctx.shadowBlur =
+        frostCtx.shadowBlur =
           p.large
             ? 12
             : 7;
 
 
-        ctx.beginPath();
+        frostCtx.beginPath();
 
 
-        ctx.moveTo(
+        frostCtx.moveTo(
           -p.size * 0.55,
           -p.size * 0.25
         );
 
 
-        ctx.lineTo(
+        frostCtx.lineTo(
           p.size * 0.10,
           -p.size * 0.55
         );
 
 
-        ctx.lineTo(
+        frostCtx.lineTo(
           p.size * 0.55,
           -p.size * 0.05
         );
 
 
-        ctx.lineTo(
+        frostCtx.lineTo(
           p.size * 0.25,
           p.size * 0.55
         );
 
 
-        ctx.lineTo(
+        frostCtx.lineTo(
           -p.size * 0.45,
           p.size * 0.30
         );
 
 
-        ctx.closePath();
+        frostCtx.closePath();
 
 
-        ctx.fill();
+        frostCtx.fill();
 
 
-        ctx.restore();
+        frostCtx.restore();
 
 
         if (
@@ -1407,10 +1827,6 @@
 
 
     function scheduleFrostDrop() {
-
-      /*
-        Once zero is reached this loop simply ends.
-      */
 
       if (!frostActive) {
         return;
